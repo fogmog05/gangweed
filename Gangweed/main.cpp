@@ -26,6 +26,7 @@ void battleMove(int moveID, Enemy *target){
         break;
     case 1:
         target->enemyHP -= 22;
+        cout << target->enemyName << " took 22 damage!" << endl;
         break;
 
 
@@ -58,7 +59,7 @@ int main() {
         cin >> selectedMoveID;
         cout << "Slot id?" << endl;
         cin >> selectedSlotID;  
-        battleMove(selectedMoveID, enemySlots[selectedSlotID-1]);
+        battleMove(selectedMoveID, enemySlots[selectedSlotID]);
         cout << johnChapin.enemyName << ": " << johnChapin.enemyHP << endl;
         cout << kuronbo.enemyName << ": " << kuronbo.enemyHP << endl;
     }
