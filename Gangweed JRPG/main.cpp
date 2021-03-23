@@ -1,76 +1,75 @@
 #include <iostream>
-#include <conio.h>
-
+#include <unistd.h>
 using namespace std;
 
 class Enemy {
     public:
     string enemyName;
-    int enemyHP;
-    int maxEnemyHP;
-    int enemyMoves[10];
-    int enemySlot;
+    short enemyHP;
+    short enemyMaxHP;
+    char enemyMoves[10];
+    int enemyID;
 };
+
 class Ally {
     public:
     string allyName;
-    int allyHP;
-    int maxAllyHP;
-    int allyMoves[10];
-    int allySlot;
+    short allyHP;
+    short maxAllyHP;
+    char allyMoves[10];
+    int allyID;
 };
 
-int battleMove(int moveID, int enemyHP){
+void battleMove(char moveID, Enemy *target){
+    int damage;
     switch(moveID) {
-
     case 0:
         break;
-
     case 1:
-        enemyHP = enemyHP - 22;
-        return enemyHP;
+        damage = 22;
         break;
-
-    case 5:
-        enemyHP = enemyHP - 30;
-        return enemyHP;
+    case 2:
+        damage = 44;
         break;
-
-    default:
-        return enemyHP;
-        break;
-
-
     }
+    target->enemyHP -= damage;
+    cout << target->enemyName << " took " << damage << " damage!" << endl;
 }
 
-int main(){
-
+int main() {
     Enemy johnChapin;
     johnChapin.enemyName = "John Chapin";
     johnChapin.enemyHP = 100;
-    johnChapin.maxEnemyHP = 100;
-    johnChapin.enemySlot = 1;
-    johnChapin.enemyMoves[0] = {1};
+    johnChapin.enemyMaxHP = 100;
+    johnChapin.enemyID = 1;
+    johnChapin.enemyMoves[1] = {1};
+    
+    Enemy kuronbo;
+    kuronbo.enemyName = "Kuronbo";
+    kuronbo.enemyHP = 100;
+    kuronbo.enemyMaxHP = 100;
+    kuronbo.enemyID = 2;
+    kuronbo.enemyMoves[1] = {1};
+    
+    Enemy *enemySlots[2] = {&johnChapin,&kuronbo};
 
     Ally jesseDotson;
-    jesseDotson.allyName="Jesse Dotson";
-    jesseDotson.allyHP = 100;
-    jesseDotson.maxAllyHP = 100;
-    jesseDotson.allySlot = 1;
-    jesseDotson.allyMoves[0] = {1};
-    jesseDotson.allyMoves[1] = {5};
-
 
     int selectedMoveID;
     int selectedSlotID;
-
-    cout << "Move id?" << endl;
-    cout << jesseDotson.allyMoves[0] << endl;
-    cout << jesseDotson.allyMoves[1] << endl;
-    cin >> selectedMoveID;
-    johnChapin.enemyHP = battleMove(selectedMoveID, johnChapin.enemyHP);
-    system("cls");
-    cout << "Jesse Dotson HP: " << jesseDotson.allyHP << " | John Chapin HP: " << johnChapin.enemyHP;
+    while (johnChapin.enemyHP > 0 || kuronbo.enemyHP > 0) {
+        cout << "Move id?" << endl;
+        cin >> selectedMoveID;
+        cout << "Slot id?" << endl;
+        cin >> selectedSlotID;  
+        battleMove(selectedMoveID, enemySlots[selectedSlotID]);
+        if (johnChapin.enemyHP > 0) {
+            cout << johnChapin.enemyName << ": " << johnChapin.enemyHP << endl;
+        }
+        if (kuronbo.enemyHP > 0) {
+            cout << kuronbo.enemyName << ": " << kuronbo.enemyHP << endl;
+        }
+        usleep(5000);
+    }
     return 0;
-};
+}
