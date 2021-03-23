@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -19,13 +20,24 @@ class Ally {
     int allySlot;
 };
 
-void battleMove(slotID, moveID){
+int battleMove(int moveID, int enemyHP){
     switch(moveID) {
+
     case 0:
         break;
-    case 1:
 
-        johnChapin.enemyHP = johnChapin.enemyHP - 22;
+    case 1:
+        enemyHP = enemyHP - 22;
+        return enemyHP;
+        break;
+
+    case 5:
+        enemyHP = enemyHP - 30;
+        return enemyHP;
+        break;
+
+    default:
+        return enemyHP;
         break;
 
 
@@ -39,19 +51,26 @@ int main(){
     johnChapin.enemyHP = 100;
     johnChapin.maxEnemyHP = 100;
     johnChapin.enemySlot = 1;
-    johnChapin.enemyMoves[] = {1};
-
+    johnChapin.enemyMoves[0] = {1};
 
     Ally jesseDotson;
+    jesseDotson.allyName="Jesse Dotson";
+    jesseDotson.allyHP = 100;
+    jesseDotson.maxAllyHP = 100;
+    jesseDotson.allySlot = 1;
+    jesseDotson.allyMoves[0] = {1};
+    jesseDotson.allyMoves[1] = {5};
+
 
     int selectedMoveID;
     int selectedSlotID;
 
     cout << "Move id?" << endl;
+    cout << jesseDotson.allyMoves[0] << endl;
+    cout << jesseDotson.allyMoves[1] << endl;
     cin >> selectedMoveID;
-    cout << "Slot id?";
-    cin >> selectedSlotID;
-    battleMove(selectedSlotID, selectedMoveID);
-    cout << johnChapin.enemyHP;
+    johnChapin.enemyHP = battleMove(selectedMoveID, johnChapin.enemyHP);
+    system("cls");
+    cout << "Jesse Dotson HP: " << jesseDotson.allyHP << " | John Chapin HP: " << johnChapin.enemyHP;
     return 0;
-}
+};
