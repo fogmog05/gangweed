@@ -8,50 +8,59 @@ class Enemy {
     int enemyHP;
     int maxEnemyHP;
     int enemyMoves[10];
-    int enemySlot;
+    int enemyID;
 };
+
 class Ally {
     public:
     string allyName;
     int allyHP;
     int maxAllyHP;
     int allyMoves[10];
-    int allySlot;
+    int allyID;
 };
 
-void battleMove(slotID, moveID){
+void battleMove(int moveID, Enemy *target){
     switch(moveID) {
     case 0:
         break;
     case 1:
-
-        johnChapin.enemyHP = johnChapin.enemyHP - 22;
+        target->enemyHP -= 22;
         break;
 
 
     }
 }
 
-int main(){
-
+int main() {
     Enemy johnChapin;
     johnChapin.enemyName = "John Chapin";
     johnChapin.enemyHP = 100;
     johnChapin.maxEnemyHP = 100;
-    johnChapin.enemySlot = 1;
-    johnChapin.enemyMoves[] = {1};
-
+    johnChapin.enemyID = 1;
+    johnChapin.enemyMoves[1] = {1};
+    
+    Enemy kuronbo;
+    kuronbo.enemyName = "kuronbo";
+    kuronbo.enemyHP = 100;
+    kuronbo.maxEnemyHP = 100;
+    kuronbo.enemyID = 2;
+    kuronbo.enemyMoves[1] = {1};
+    
+    Enemy *enemySlots[2] = {&johnChapin,&kuronbo};
 
     Ally jesseDotson;
 
     int selectedMoveID;
     int selectedSlotID;
-
-    cout << "Move id?" << endl;
-    cin >> selectedMoveID;
-    cout << "Slot id?";
-    cin >> selectedSlotID;
-    battleMove(selectedSlotID, selectedMoveID);
-    cout << johnChapin.enemyHP;
+    while (johnChapin.enemyHP > 0 || kuronbo.enemyHP > 0) {
+        cout << "Move id?" << endl;
+        cin >> selectedMoveID;
+        cout << "Slot id?" << endl;
+        cin >> selectedSlotID;  
+        battleMove(selectedMoveID, enemySlots[selectedSlotID-1]);
+        cout << johnChapin.enemyName << " " << johnChapin.enemyHP << endl;
+        cout << kuronbo.enemyName << " " << kuronbo.enemyHP << endl;
+    }
     return 0;
 }
