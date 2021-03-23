@@ -41,7 +41,7 @@ int main() {
     johnChapin.enemyMoves[1] = {1};
     
     Enemy kuronbo;
-    kuronbo.enemyName = "kuronbo";
+    kuronbo.enemyName = "Kuronbo";
     kuronbo.enemyHP = 100;
     kuronbo.maxEnemyHP = 100;
     kuronbo.enemyID = 2;
@@ -59,8 +59,8 @@ int main() {
         cout << "Slot id?" << endl;
         cin >> selectedSlotID;  
         battleMove(selectedMoveID, enemySlots[selectedSlotID-1]);
-        cout << johnChapin.enemyName << " " << johnChapin.enemyHP << endl;
-        cout << kuronbo.enemyName << " " << kuronbo.enemyHP << endl;
+        cout << johnChapin.enemyName << ": " << johnChapin.enemyHP << endl;
+        cout << kuronbo.enemyName << ": " << kuronbo.enemyHP << endl;
     }
     return 0;
 }
