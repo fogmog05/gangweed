@@ -1,5 +1,0 @@
-# depslib dependency file v1.0
-1616526845 source:c:\users\ian\documents\github\gangweed\gangweed jrpg\main.cpp
-	<iostream>
-	<unistd.h>
-
