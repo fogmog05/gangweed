@@ -711,7 +711,7 @@
                 <Height>13</Height>
                 <ID>1</ID>
                 <Left>0</Left>
-                <Locked>False</Locked>
+                <Locked>True</Locked>
                 <Name>lblOverHotspot</Name>
                 <Text>@OVERHOTSPOT@</Text>
                 <TextAlignment>Center</TextAlignment>
